@@ -1,5 +1,6 @@
 import sbt._
 import sbt.Keys._
+import ludington.sbt.PublishSettings
 
 lazy val commonSettings = Seq(
   scalaVersion := "2.10.5",
@@ -32,34 +33,5 @@ lazy val root = (project in file(".")).
 
     resolvers := ("releases" at "https://oss.sonatype.org/service/local/staging/deploy/maven2") +: resolvers.value,
 
-    publishTo <<= version {
-      (v: String) =>
-        val nexus = "https://oss.sonatype.org/"
-        if (v.trim.endsWith("SNAPSHOT"))
-          Some("snapshots" at nexus + "content/repositories/snapshots")
-        else
-          Some("releases" at nexus + "service/local/staging/deploy/maven2")
-    },
-
-    pomExtra := {
-      <url>https://github.com/sksamuel/sbt-avro4s</url>
-        <licenses>
-          <license>
-            <name>MIT</name>
-            <url>http://opensource.org/licenses/MIT</url>
-            <distribution>repo</distribution>
-          </license>
-        </licenses>
-        <scm>
-          <url>git@github.com:sksamuel/sbt-avro4s.git</url>
-          <connection>scm:git@github.com:sksamuel/sbt-avro4s.git</connection>
-        </scm>
-        <developers>
-          <developer>
-            <id>sksamuel</id>
-            <name>sksamuel</name>
-            <url>http://github.com/sksamuel</url>
-          </developer>
-        </developers>
-    }
+    PublishSettings.publishSettings
   )
