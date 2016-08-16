@@ -3,7 +3,7 @@ import sbt.Keys._
 
 lazy val commonSettings = Seq(
   scalaVersion := "2.10.5",
-  version in ThisBuild := "0.91.0",
+  version in ThisBuild := "1.0.0-SNAPSHOT",
   organization := "com.sksamuel.avro4s",
   scalacOptions := Seq("-unchecked", "-deprecation", "-feature", "-encoding", "utf8"),
   javacOptions ++= Seq("-source", "1.7", "-target", "1.7")
@@ -17,7 +17,7 @@ lazy val root = (project in file(".")).
     sbtPlugin := true,
     licenses += ("MIT", url("https://opensource.org/licenses/MIT")),
     libraryDependencies ++= Seq(
-      "com.sksamuel.avro4s" %% "avro4s-generator" % "1.2.2"
+      "com.sksamuel.avro4s" %% "avro4s-generator" % "1.5.6-SNAPSHOT"
     ),
     publishMavenStyle := true,
 
